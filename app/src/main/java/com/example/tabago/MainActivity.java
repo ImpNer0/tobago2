@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,6 +36,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.util.FusedLocationSource;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -100,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean handleMessage(Message msg) {
             if(msg.what == STOP_SMOKING){
-                boolean isSmokingZone = LocationUtility.isSmokingZone(MainActivity.this);
-                //TODO : 스모킹 존이아니면 ~~~ OR 스모킹 존이면~~~ 일아서 코딩하기.
+                LatLng curLatLng = LocationUtility.getCurrentLocation(getApplicationContext());
+                boolean isSmokingZone = LocationUtility.isSmokingZone(curLatLng);
                 if ( !isSmokingZone && connectedThread!=null){
                     connectedThread.write(SHUTDOWN_CODE);
                 }
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         move2LinearLayout = findViewById(R.id.move2);
         move3LinearLayout = findViewById(R.id.move3);
@@ -382,7 +384,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Send string "limit"
     public void onClickButtonSend(View view) {
-        LocationUtility.isSmokingZone(MainActivity.this);
         if (connectedThread != null) {
             connectedThread.write("limit");
         }
