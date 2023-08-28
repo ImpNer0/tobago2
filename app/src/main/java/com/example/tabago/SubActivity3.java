@@ -121,51 +121,11 @@ public class SubActivity3 extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void addMarkers() {
-        Marker marker1 = new Marker();
-        marker1.setPosition(new LatLng(37.210279, 126.975302)); // ICT대학
-        marker1.setMap(naverMap); // 마커를 지도에 추가
-        lstMarkers.add(marker1);
-
-        Marker marker2 = new Marker();
-        marker2.setPosition(new LatLng(37.211645, 127.980015));//미혁관
-        marker2.setMap(naverMap);
-        lstMarkers.add(marker2);
-
-        Marker marker3 = new Marker();
-        marker3.setPosition(new LatLng(37.212269, 127.970126));//글로벌 경상관
-        marker3.setMap(naverMap);
-        lstMarkers.add(marker3);
-
-        Marker marker4 = new Marker();
-        marker4.setPosition(new LatLng(37.390935, 126.956417)); // 경기도 안양시 비산동 1110-2
-        marker4.setMap(naverMap);
-        lstMarkers.add(marker4);
-
-        Marker marker5 = new Marker();
-        marker5.setPosition(new LatLng(37.391317, 126.957767)); // 경기도 안양시 평촌동 934-1
-        marker5.setMap(naverMap);
-        lstMarkers.add(marker5);
-
-        Marker marker6 = new Marker();
-        marker6.setPosition(new LatLng(37.390935, 126.956417)); // 경기도 안양시 비산동 1110-2
-        marker6.setMap(naverMap);
-        lstMarkers.add(marker6);
-
-        Marker marker8 = new Marker();
-        marker8.setPosition(new LatLng(37.398283, 126.952497)); // 경기도 안양시 호계동 1045
-        marker8.setMap(naverMap);
-        lstMarkers.add(marker8);
-
-        Marker marker9 = new Marker();
-        marker9.setPosition(new LatLng(37.397808, 126.953833)); // 경기도 안양시 호계동 1039
-        marker9.setMap(naverMap);
-        lstMarkers.add(marker9);
-
-        Marker marker10 = new Marker();
-        marker10.setPosition(new LatLng(37.411986, 126.951515)); // 경기도 안양시 동안구 관양동 1755
-        marker10.setMap(naverMap);
-        lstMarkers.add(marker10);
-
+        for(LatLng latLng : LocationUtility.getSmokingCoordinates()){
+            Marker tmpMarker = new Marker(latLng);
+            tmpMarker.setMap(naverMap);
+            lstMarkers.add(tmpMarker);
+        }
     }
 
     private void launchNaverMapsApp(LatLng markerPosition) throws IOException {
