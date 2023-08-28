@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- activity_sub3.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
+
+    <fragment
+        android:id="@+id/map_sub3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.naver.maps.map.MapFragment" />
+
+
+
+</RelativeLayout>
