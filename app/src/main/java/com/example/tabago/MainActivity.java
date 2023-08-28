@@ -89,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean handleMessage(Message msg) {
             if (msg.what == INCREASE_COUNT_AND_GRAPH) {
+                LatLng curLatLng = LocationUtility.getCurrentLocation(getApplicationContext());
+                boolean isSmokingZone = LocationUtility.isSmokingZone(curLatLng);
+                if ( !isSmokingZone && connectedThread!=null){
+                    connectedThread.write(SHUTDOWN_CODE);
+                    return true;
+                }
                 increaseCountAndGraph();
                 return true;
             }
