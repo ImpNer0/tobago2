@@ -90,7 +90,9 @@ public class LocationUtility {
                 new LatLng(37.390935, 126.956417),
                 new LatLng(37.398283, 126.952497),
                 new LatLng(37.397808, 126.953833),
-                new LatLng(37.411986, 126.951515)
+                new LatLng(37.411986, 126.951515),
+                new LatLng(37.551689,127.134950)
+
         );
 
         return smokingCoordinates;
